@@ -67,21 +67,10 @@ const GameOfLife = () => {
   }, []);
 
   return (
-    <div>
-      <button
-        onClick={() => {
-          setRunning(!running);
-          if (!running) {
-            runningRef.current = true;
-            runSimulation();
-          }
-        }}
-      >
-        {running ? 'stop' : 'start'}
-      </button>
+    <div className="flex flex-col items-center justify-center h-screen">
       <div
+        className="grid grid-flow-row-dense gap-1"
         style={{
-          display: 'grid',
           gridTemplateColumns: `repeat(${numCols}, 20px)`
         }}
       >
@@ -95,15 +84,32 @@ const GameOfLife = () => {
                 });
                 setGrid(newGrid);
               }}
-              style={{
-                width: 20,
-                height: 20,
-                backgroundColor: grid[i][k] ? 'pink' : undefined,
-                border: 'solid 1px black'
-              }}
+              className={`w-5 h-5 ${grid[i][k] ? 'bg-pink-500' : 'bg-white'} border border-black`}
             />
           ))
         )}
+      </div>
+      <div className="mt-4">
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded-lg mr-2"
+          onClick={() => {
+            setRunning(!running);
+            if (!running) {
+              runningRef.current = true;
+              runSimulation();
+            }
+          }}
+        >
+          {running ? 'Stop' : 'Start'}
+        </button>
+        <button
+          className="px-4 py-2 bg-red-500 text-white rounded-lg"
+          onClick={() => {
+            setGrid(generateRandomGrid());
+          }}
+        >
+          Clear
+        </button>
       </div>
     </div>
   );
