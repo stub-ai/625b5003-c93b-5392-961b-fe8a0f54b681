@@ -1,13 +1,9 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import GameOfLife from '../components/GameOfLife';
 
 export default function Home() {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-    </main>
-  )
+    <div className="flex justify-center items-center h-screen bg-gray-200">
+      <GameOfLife />
+    </div>
+  );
 }
